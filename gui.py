@@ -2,9 +2,8 @@ import customtkinter as ctk
 from bosco import *
 from tkinter import simpledialog, messagebox
 
-# Create the main application window
-ctk.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
-ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("blue")
 
 text_var4 = ctk.StringVar(value="Bosco")
 label1 = ctk.CTkLabel(root,height=50,width=750,textvariable=text_var4, font=("Felix Titling", 25, "bold"), 
@@ -12,7 +11,7 @@ label1 = ctk.CTkLabel(root,height=50,width=750,textvariable=text_var4, font=("Fe
 label1.pack(padx=15, pady=5)
 
 text_var = ctk.StringVar(value="Create Menu")
-label2 = ctk.CTkLabel(root,height=50,width=50, textvariable=text_var, font=("Arial", 18, "bold"), 
+label2 = ctk.CTkLabel(root,height=30,width=50, textvariable=text_var, font=("Arial", 18, "bold"), 
                       fg_color="gray34", text_color="white",corner_radius=30)
 label2.pack(padx=15, pady=5)
 
@@ -24,7 +23,7 @@ dropdown = ctk.CTkComboBox(root, variable=selected_value, values=options)
 dropdown.pack(padx=10, pady=5)
 
 text_var2 = ctk.StringVar(value="Function Menu")
-label3 = ctk.CTkLabel(root,height=50,width=50, textvariable=text_var2, font=("Arial", 18, "bold"), 
+label3 = ctk.CTkLabel(root,height=30,width=50, textvariable=text_var2, font=("Arial", 18, "bold"), 
                       fg_color="gray34", text_color="white",corner_radius=30)
 label3.pack(padx=15, pady=5)
 
@@ -34,11 +33,6 @@ options2 = ["", "create link button", "create text area", "create button", "chec
             "if", "else", "perform", "insert html code"]
 dropdown2 = ctk.CTkComboBox(root, variable=selected_value2, values=options2)
 dropdown2.pack(padx=10, pady=5)
-
-def ask_custom_string(title, prompt):
-    dialog = CustomInputDialog(root, title, prompt)
-    root.wait_window(dialog)
-    return dialog.result
 
 def checkbox_callback():
     if var.get() == 1:
@@ -52,7 +46,7 @@ checkbox.pack(pady=5)
 
 
 text_var3 = ctk.StringVar(value="Edit and Logic Menu")
-label4 = ctk.CTkLabel(root,height=50,width=50, textvariable=text_var3, font=("Arial", 18, "bold"), 
+label4 = ctk.CTkLabel(root,height=30,width=50, textvariable=text_var3, font=("Arial", 18, "bold"), 
                       fg_color="gray34", text_color="white",corner_radius=30)
 label4.pack(padx=15, pady=5)
 
@@ -84,7 +78,7 @@ stylefile = ask_custom_string("Input", "style file")
 program = ask_custom_string("Input", "program file")
 
 def view():
-    t.delete("1.0", ctk.END)  # Clear the content of the Text widget
+    t.delete("1.0", ctk.END)
     try:
         with open(savefile, 'r') as fp:
             lines = fp.readlines()
@@ -114,7 +108,7 @@ def checkbox_callback1():
 
 var1 = ctk.IntVar()
 checkbox1 = ctk.CTkCheckBox(frame, text="View", variable=var1, command=checkbox_callback1)
-checkbox1.grid(sticky="nsew", padx=120,pady=10)
+checkbox1.grid(sticky="nsew", padx=120,pady=5)
 
 def compiler():
     Inp = savefile
@@ -211,5 +205,7 @@ button.grid(sticky="nsew", padx=50)
 button2 = ctk.CTkButton(frame, text="Compile", command=compiler)
 button2.grid(sticky="nsew", padx=50, pady=10)
 
-# Start the CustomTkinter event loop
+buttoncr = ctk.CTkButton(root, text="Credit", command=ask_credit)
+buttoncr.pack()
+
 root.mainloop()
