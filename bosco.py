@@ -19,7 +19,7 @@ try:
         def Createurl():
                 File_object = open(savefile, "a")
                 url = ask_custom_string("Input", "Enter URL")
-                program1 = str("st.write('check out this [link]("+url+")')#url"+url+"\n")
+                program1 = str("st.write('check out this [link]("+url+")')#      url"+url+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -34,7 +34,7 @@ try:
                 File_object = open(savefile, "a")
                 content1 = ask_custom_string("Input", "Enter URL")
                 content2 = ask_custom_string("Input", "Enter Button Text")
-                program1 = str("st.link_button('"+content2+"', '"+content1+"') #link button "+content2+"\n")
+                program1 = str("st.link_button('"+content2+"', '"+content1+"') #      link button "+content2+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -42,13 +42,13 @@ try:
                 File_object = open(savefile, "a")
                 text = ask_custom_string("Input", "Enter Text")
                 explanation = ask_custom_string("Input", "Enter variable")
-                program1 = str(text+'=st.text_area("'+explanation+'","'+text+'")#text area'+text+'\n')
+                program1 = str(text+'=st.text_area("'+explanation+'","'+text+'")#      text area'+text+'\n')
                 File_object.write(program1)
                 print("✓")
 
         def divider():
                 File_object = open(savefile, "a")
-                program1 = str("st.divider()#divider\n")
+                program1 = str("st.divider()#      divider\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -58,7 +58,7 @@ try:
                 program1 = str("st.markdown('''\n")
                 program2 = str(inpoot)
                 program3 = str("\n''', unsafe_allow_html=True)")
-                File_object.write("#code\n"+program1+program2+program3+"\n #code\n")
+                File_object.write("#code\n"+program1+program2+program3+"\n #      code\n")
                 print("✓")
 
         def intvar():
@@ -80,21 +80,21 @@ try:
         def CreateGroup():
                 variable = ask_custom_string("Input", "Enter Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.header('"+variable+"')#Header\n")
+                program1 = str("st.header('"+variable+"')#      Header "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def CreateSubGroup():
                 variable = ask_custom_string("Input", "Enter Sub-Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.subheader('"+variable+"')#sub header\n")
+                program1 = str("st.subheader('"+variable+"')#      sub header\n")
                 File_object.write(program1)
                 print("✓")
 
         def createtitle():
                 variable = ask_custom_string("Input", "Enter Title")
                 File_object = open(savefile, "a")
-                program1 = str("st.title('"+variable+"')#title"+variable+"\n")
+                program1 = str("st.title('"+variable+"')#      title"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -103,12 +103,12 @@ try:
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.write("+i+")\n")
+                        program1 = str("st.write("+i+")      #text\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.write('"+variable+"')\n")
+                        program1 = str("st.write('"+variable+"')      #text\n")
                         File_object.write(program1)
                         print("✓")
 
@@ -125,12 +125,12 @@ try:
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.success("+i+")#output\n")
+                        program1 = str("st.success("+i+")      output\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.success('"+variable+"')#output\n")
+                        program1 = str("st.success('"+variable+"')      #output\n")
                         File_object.write(program1)
                         print("✓")
 
@@ -138,46 +138,48 @@ try:
                 File_object = open(savefile, "a")
                 variable = input("image path")
                 size = input("image size")
-                program1 = str("        st.image(Image.open('"+variable+"'),width="+size+")#image\n")
+                program1 = str("        st.image(Image.open('"+variable+"'),width="+size+")      #image\n")
                 File_object.write(program1)
                 print("✓")
 
-        def checkbox():
+        def streamlitcheckbox():
                 File_object = open(savefile, "a")
                 variable = ask_custom_string("Input", "Enter Checkbox name")
-                program1 = str(variable+" = st.checkbox('"+variable+"')#checkbox"+variable+"\n")
+                program1 = str(variable+" = st.checkbox('"+variable+"')      #checkbox"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def selector():
                 File_object = open(savefile, "a")
-                variable1 = ask_custom_string("Input", "Enter variable name")
-                variable = ask_custom_string("Input", "Enter text to display")
-                insertvalue = ask_custom_string("Input", "Enter value to insert (use '' and ,)")
-                program1 = str(variable1 +" = st.selectbox('"+variable+"',["+insertvalue+"])#selector"+variable1+"\n")
-                File_object.write(program1)
+                variable1 = ask_custom_string("Selector Box", "Enter variable name")
+                variable = ask_custom_string("Selector Box", "Enter text to display")
+                insertvalue = ask_custom_string("Selector Box", "Enter value to insert")
+                insertlist=insertvalue.split(',')
+                insert = ", ".join(f"'{word}'" for word in insertlist)
+                program1 = str(variable1 +" = st.selectbox('"+variable+"',[")
+                program2 = str(insert)
+                program3 = str("])      #selector"+variable1+"\n")
+                File_object.write(program1+program2+program3)
                 print("✓")
 
         def ifstate():
                 File_object = open(savefile, "a")
-                variables = ask_custom_string("Check Var", "object to be checked(type create to make new variables)")
+                variables = ask_if_string("Check Input From Button , Checkbox , Selector etc.", savefile)
                 if variables == "create":
                         changevar()
-                        variable = ask_custom_string("Check Var", "if object variable")
-                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons)(use '')")
+                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
                         condition = ask_custom_string("Check Var", "condition ==,<=,>=,!=,(leave empty for checkboxes or buttons), ")
-                        program1 = str("if "+variables+""+condition+""+choice+":#if/checkvar\n")
+                        program1 = str("if "+variables+""+condition+""+choice+":      #if/checkvar\n")
                         File_object.write(program1)
-                        
+                      
                 else:
-                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons)(use '')")
-                        condition = ask_custom_string("Check Var", "condition ==,<=,>=,!=,(leave empty for checkboxes or buttons), ")
-                        program1 = str("if "+variables+""+condition+""+choice+":#if/checkvar\n")
+                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
+                        condition = ask_cond_string("Check Var Condition",savefile)
+                        program1 = str("if "+variables+""+condition+""+choice+":      #if/checkvar\n")
                         File_object.write(program1)
-
                 print("✓")
 
-        def perform():
+        def thenperform():
                 File_object = open(savefile, "a")
                 program1 = str("        ")
                 File_object.write(program1)
@@ -186,7 +188,7 @@ try:
         def button_gui():
                 File_object = open(savefile, "a")
                 name = ask_custom_string("Input", "Enter Button Text")
-                program1 = str(name+" = st.button('"+name+"')#button"+name+"\n")
+                program1 = str(name+" = st.button('"+name+"')      #button"+name+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -194,11 +196,7 @@ try:
 
         def elsee():
                 File_object = open(savefile, "a")
-                program1 = ask_custom_string("Input", "If the above conditions aren't met")
-                perform()
-                if program1 =="":
-                        program1=="pass"
-                File_object.write(program1+" #else\n")
+                File_object.write("else:"+"      #else\n")
                 print("✓")
 
         def split_file():
@@ -240,13 +238,11 @@ try:
                 with open(savefile, 'r') as fp:
                     lines = fp.readlines()
 
-                Inputobject = int(input("object number to remove "))
-                Inputobj = 0
-                Inputobj == Inputobject
-
+                Inputobject = ask_remove_string("Remove", "Line Numbers(select view if you dont know line no)")
+                
                 with open(savefile, 'w') as fp:
                     for number, line in enumerate(lines):
-                        if number not in [Inputobject]:
+                        if number not in Inputobject:
                             fp.write(line)
                 print("✓")
 

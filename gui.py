@@ -5,7 +5,7 @@ from tkinter import simpledialog, messagebox
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-text_var4 = ctk.StringVar(value="Bosco")
+text_var4 = ctk.StringVar(value="Bosco 1.0")
 label1 = ctk.CTkLabel(root,height=50,width=750,textvariable=text_var4, font=("Felix Titling", 25, "bold"), 
                       fg_color="darkslate gray", text_color="white",corner_radius=30)
 label1.pack(padx=15, pady=5)
@@ -37,6 +37,7 @@ dropdown2.pack(padx=10, pady=5)
 def checkbox_callback():
     if var.get() == 1:
         insert()
+        insert_warning()
     else:
         inserted()
 
@@ -56,13 +57,13 @@ options3 = ["", "if", "check input", "else", "remove line", "insert line", "inse
 dropdown3 = ctk.CTkComboBox(root, variable=selected_value3, values=options3)
 dropdown3.pack(padx=10, pady=5)
 
-ifs = ctk.CTkButton(root, text="If / Check Object", command=ifstate)
+ifs = ctk.CTkButton(root, text="If / Check Object", command=lambda :[ifstate(),thenperform(),warning()])
 ifs.pack(pady=2)
 
-els = ctk.CTkButton(root, text="Else", command=elsee)
+els = ctk.CTkButton(root, text="Else / If Not", command=lambda:[elsee(),thenperform(),warning()])
 els.pack(pady=2)
 
-parform = ctk.CTkButton(root, text="If True \n perform action", command=perform)
+parform = ctk.CTkButton(root, text="Then \n perform action", command=lambda:[thenperform(),warning()])
 parform.pack(pady=2)
 
 t = ctk.CTkTextbox(root, width=300, height=400)
@@ -90,7 +91,7 @@ def view():
     except FileNotFoundError:
         messagebox.showerror("Error", f"File {savefile} not found")
 
-frame = ctk.CTkFrame(root, width=300, height=120, corner_radius=20 , border_width=5)
+frame = ctk.CTkFrame(root, width=300, height=160, corner_radius=20 , border_width=5)
 frame.pack(pady=5, padx=5)
 
 frame.grid_propagate(False)
@@ -155,34 +156,44 @@ def perform_action():
     if Input == "create output":
         hookoutput()
     if Input == "create checkbox":
-        checkbox()
+        streamlitcheckbox()
         ifstate()
-        perform()
+        thenperform()
+        warning()
     if Input == "create selector":
         selector()
         ifstate()
-        perform()
+        thenperform()
+        warning()
     if Input == "check input":
         ifstate()
+        thenperform()
+        warning()
     if Input == "if":
         ifstate()
-        perform()
+        thenperform()
+        warning()
     if Input == "insert line":
         print("this func removes lines from this file to another for temporary storage use command inserted to place lines back in position\n")
         insert()
+        insert_warning()
     if Input == "inserted":
         inserted()
     if Input == "perform":
-        perform()
+        thenperform()
+        warning()
     if Input == "create button":
         button_gui()
         ifstate()
-        perform()
+        thenperform()
+        warning()
     if Input == "else":
         elsee()
+        thenperform()
+        warning()
     if Input == "control var":
         changevar()
-    if Input == "remove line":
+    if Input == "remove object":
         remove()
     if Input == "insert html code":
         code()
@@ -199,11 +210,21 @@ def perform_action():
     with open('code.txt', 'a') as new_file:
         new_file.writelines(Input + "\n")
 
+    selected_value==ctk.StringVar(value="")
+    dropdown.set("")
+    selected_value2==ctk.StringVar(value="")
+    dropdown2.set("")
+    selected_value3==ctk.StringVar(value="")
+    dropdown3.set("")
+
 button = ctk.CTkButton(frame, text="Perform Selected Action", command=perform_action)
+button.grid(sticky="nsew", padx=50,pady=10)
+
+button = ctk.CTkButton(frame, text="Remove Line", command=remove)
 button.grid(sticky="nsew", padx=50)
 
 button2 = ctk.CTkButton(frame, text="Compile", command=compiler)
-button2.grid(sticky="nsew", padx=50, pady=10)
+button2.grid(sticky="nsew", padx=50,pady=10)
 
 buttoncr = ctk.CTkButton(root, text="Credit", command=ask_credit)
 buttoncr.pack()

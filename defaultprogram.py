@@ -26,6 +26,13 @@ st.markdown('''
   		border: 5px solid #ddd;
   		border-radius: 12px;
   		padding: 5px;
+	}
+
+	[data-testid="stAppViewContainer"] > .main {
+		background-image: url("https://images.pexels.com/photos/1090977/pexels-photo-1090977.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+		background-size: 100vw 100vh;
+                background-position: center;  
+                background-repeat: no-repeat;
 	}</style>
 ''', unsafe_allow_html=True)
 st.title('_Bosco_ Is :blue[cool]:sunglasses::+1:')
@@ -33,7 +40,7 @@ st.write('good text')
 st.header('bosco')
 if st.checkbox('yes or no'):
         st.success(' testing')
-st.image(Image.open('image.png'),width = 300)
+st.image(Image.open('image.png'),width=300)
 st.image(Image.open('image.png'),width=200)
 if st.checkbox('diplay/no display'):
         st.success('displaying')
@@ -98,3 +105,10 @@ if click_me:#if/checkvar
 	st.success('checker clicked')#output
 st.link_button('link_button', '#bosco') #link button link_button
 st.link_button('bosco', '#bosco') #link button bosco
+chaakbox = st.checkbox('chaakbox')#checkboxchaakbox
+if chaakbox:#if/checkvar
+        st.divider()#divider
+
+sel = st.selectbox('selector',['1', '2', '3', '4', '5'])      #selectorsel
+if sel==2:      #if/checkvar
+        st.divider()#      divider
