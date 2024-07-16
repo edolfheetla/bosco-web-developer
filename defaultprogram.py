@@ -33,8 +33,11 @@ st.markdown('''
 		background-size: 100vw 100vh;
                 background-position: center;  
                 background-repeat: no-repeat;
-	}</style>
+        }
+        [data-testid="stSidebar"] {{ background: rgba(0,0,0,0); }}
+</style>
 ''', unsafe_allow_html=True)
+
 st.title('_Bosco_ Is :blue[cool]:sunglasses::+1:')
 st.write('good text')
 st.header('bosco')
@@ -112,3 +115,5 @@ if chaakbox:#if/checkvar
 sel = st.selectbox('selector',['1', '2', '3', '4', '5'])      #selectorsel
 if sel==2:      #if/checkvar
         st.divider()#      divider
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ("Home", "About", "Contact"))

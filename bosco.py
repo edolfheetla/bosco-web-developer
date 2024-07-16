@@ -15,40 +15,47 @@ savefile = listToString(s)
 try:
         
         #Input = input("Enter Function ")
-
+        def CreateVideo():
+                File_object = open(savefile, "a")
+                url = ask_custom_string("Input", "Enter Video URL")
+                program1 = str("st.video("+url+")#      bosco created URL Video: "+url+"\n")
+                File_object.write(program1)
+                print("✓")
         def Createurl():
                 File_object = open(savefile, "a")
                 url = ask_custom_string("Input", "Enter URL")
-                program1 = str("st.write('check out this [link]("+url+")')#      url"+url+"\n")
+                text = ask_custom_string("Input", "Enter text")
+                program1 = str("st.write('"+text+" [link]("+url+")')#      bosco created url: "+text+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def Createnav():
                 File_object = open(savefile, "a")
                 content = ask_custom_string("Input", "navbar contents(use '' and ,)")
-                program1 = str("page = st_navbar(["+content+"])\nst.write(page)\n")
+                program1 = str("page = (["+content+"])\nst.write(page)\n")
                 File_object.write(program1)
                 print("✓")
 
         def linkbutton():
                 File_object = open(savefile, "a")
-                content1 = ask_custom_string("Input", "Enter URL")
+                content1 = ask_custom_string("Input", "Enter URL Use # for in-website titles,headings\nElse use https://website name")
                 content2 = ask_custom_string("Input", "Enter Button Text")
-                program1 = str("st.link_button('"+content2+"', '"+content1+"') #      link button "+content2+"\n")
+                program1 = str("st.link_button('"+content2+"', '"+content1+"') #      bosco created link button: "+content2+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def areatext():
                 File_object = open(savefile, "a")
+                Var = ask_custom_string("Input", "Enter Text Area Name")
+                heading = ask_custom_string("Input", "Enter Text Area Heading")
                 text = ask_custom_string("Input", "Enter Text")
-                explanation = ask_custom_string("Input", "Enter variable")
-                program1 = str(text+'=st.text_area("'+explanation+'","'+text+'")#      text area'+text+'\n')
+                program1 = str(Var+'=st.text_area("'+heading+'","'+text+'")#      bosco created text area: '+heading+'\n')
                 File_object.write(program1)
                 print("✓")
 
         def divider():
                 File_object = open(savefile, "a")
-                program1 = str("st.divider()#      divider\n")
+                program1 = str("st.divider()#      bosco created: divider\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -58,7 +65,7 @@ try:
                 program1 = str("st.markdown('''\n")
                 program2 = str(inpoot)
                 program3 = str("\n''', unsafe_allow_html=True)")
-                File_object.write("#code\n"+program1+program2+program3+"\n #      code\n")
+                File_object.write("#bosco started writing code\n"+program1+program2+program3+"\n #bosco finished writing code\n")
                 print("✓")
 
         def intvar():
@@ -73,64 +80,64 @@ try:
                 var = ask_custom_string("change/declare var", "Enter variable name")
                 sets = ask_custom_string("change/declare var", "==(is equal to) +=(increase by value) -=(decrease by value) =(declare variable) ''(create string)")
                 value = ask_custom_string("change/declare var", "Enter value")
-                program1 = str(var+sets+value+"#change/declare var"+var+"\n")
+                program1 = str(var+sets+value+"#        bosco changed/declared var: "+var+"\n")
                 File_object.write(program1)
                 print("✓")
                
         def CreateGroup():
                 variable = ask_custom_string("Input", "Enter Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.header('"+variable+"')#      Header "+variable+"\n")
+                program1 = str("st.header('"+variable+"')#      bosco created header: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def CreateSubGroup():
                 variable = ask_custom_string("Input", "Enter Sub-Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.subheader('"+variable+"')#      sub header\n")
+                program1 = str("st.subheader('"+variable+"')#      bosco created sub header: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def createtitle():
                 variable = ask_custom_string("Input", "Enter Title")
                 File_object = open(savefile, "a")
-                program1 = str("st.title('"+variable+"')#      title"+variable+"\n")
+                program1 = str("st.title('"+variable+"')#      bosco created title: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def Createtext():
-                variable = ask_custom_string("Input", "Enter text(type variable to use variable)")
+                variable = ask_custom_string("Input", "Enter text")
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.write("+i+")      #text\n")
+                        program1 = str("st.write("+i+")#        bosco created text-var: "+i+"\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.write('"+variable+"')      #text\n")
+                        program1 = str("st.write('"+variable+"')#        bosco created text: "+variable+"\n")
                         File_object.write(program1)
                         print("✓")
 
         def Createimage():
                 File_object = open(savefile, "a")
-                variable = ask_custom_string("Input", "Enter Path to image")
+                variable = ask_custom_string("Input", "Enter Path to image","file_dialog")
                 size = ask_custom_string("Input", "Enter size(width)")
-                program1 = str("st.image(Image.open('"+variable+"'),width="+size+")\n")
+                program1 = str("st.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def hookoutput():
-                variable = ask_custom_string("Input", "Enter text(type variable to use variable)")
+                variable = ask_custom_string("Input", "Enter text")
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.success("+i+")      output\n")
+                        program1 = str("st.success("+i+")#        bosco created output:"+i+"\n\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.success('"+variable+"')      #output\n")
+                        program1 = str("st.success('"+variable+"')#        bosco created text-var:"+variable+"\n\n")
                         File_object.write(program1)
                         print("✓")
 
@@ -138,14 +145,14 @@ try:
                 File_object = open(savefile, "a")
                 variable = input("image path")
                 size = input("image size")
-                program1 = str("        st.image(Image.open('"+variable+"'),width="+size+")      #image\n")
+                program1 = str("        st.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def streamlitcheckbox():
                 File_object = open(savefile, "a")
                 variable = ask_custom_string("Input", "Enter Checkbox name")
-                program1 = str(variable+" = st.checkbox('"+variable+"')      #checkbox"+variable+"\n")
+                program1 = str(variable+" = st.checkbox('"+variable+"')#        bosco created checkbox"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -158,7 +165,20 @@ try:
                 insert = ", ".join(f"'{word}'" for word in insertlist)
                 program1 = str(variable1 +" = st.selectbox('"+variable+"',[")
                 program2 = str(insert)
-                program3 = str("])      #selector"+variable1+"\n")
+                program3 = str("])      #bosco created selector"+variable1+"\n")
+                File_object.write(program1+program2+program3)
+                print("✓")
+
+        def navbar12():
+                File_object = open(savefile, "a")
+                variable1 = ask_custom_string("Create Navbar", "Enter variable name")
+                variable = ask_custom_string("Selector Box", "Enter text to display")
+                insertvalue = ask_custom_string("Selector Box", "Enter value to insert")
+                insertlist=insertvalue.split(',')
+                insert = ", ".join(f"'{word}'" for word in insertlist)
+                program1 = str("with st.sidebar:")
+                program2 = str()
+                program3 = str("])      #bosco created selector"+variable1+"\n")
                 File_object.write(program1+program2+program3)
                 print("✓")
 
@@ -167,15 +187,17 @@ try:
                 variables = ask_if_string("Check Input From Button , Checkbox , Selector etc.", savefile)
                 if variables == "create":
                         changevar()
-                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
+                        
                         condition = ask_custom_string("Check Var", "condition ==,<=,>=,!=,(leave empty for checkboxes or buttons), ")
-                        program1 = str("if "+variables+""+condition+""+choice+":      #if/checkvar\n")
+                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
+                        program1 = str("if "+variables+""+condition+""+choice+":      #if/checkvar: "+variables+"\n")
                         File_object.write(program1)
                       
                 else:
-                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
+                        
                         condition = ask_cond_string("Check Var Condition",savefile)
-                        program1 = str("if "+variables+""+condition+""+choice+":      #if/checkvar\n")
+                        choice = ask_custom_string("Check Var", "value (leave empty for checkboxes or buttons),(use '' for string)")
+                        program1 = str("if "+variables+""+condition+""+choice+":      #bosco created if/checkvar: "+variables+"\n")
                         File_object.write(program1)
                 print("✓")
 
@@ -188,7 +210,7 @@ try:
         def button_gui():
                 File_object = open(savefile, "a")
                 name = ask_custom_string("Input", "Enter Button Text")
-                program1 = str(name+" = st.button('"+name+"')      #button"+name+"\n")
+                program1 = str(name+" = st.button('"+name+"')      #bosco created button: "+name+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -196,7 +218,7 @@ try:
 
         def elsee():
                 File_object = open(savefile, "a")
-                File_object.write("else:"+"      #else\n")
+                File_object.write("else:"+"      #else: \n")
                 print("✓")
 
         def split_file():
@@ -238,7 +260,7 @@ try:
                 with open(savefile, 'r') as fp:
                     lines = fp.readlines()
 
-                Inputobject = ask_remove_string("Remove", "Line Numbers(select view if you dont know line no)")
+                Inputobject = ask_remove_string("Remove", "Line Numbers(select view if bosco dont know line no)")
                 
                 with open(savefile, 'w') as fp:
                     for number, line in enumerate(lines):

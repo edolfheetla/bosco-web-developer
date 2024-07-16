@@ -77,3 +77,9 @@ create header
 create divider
 create divider
 
+create url
+create text area
+create text area
+create text
+create output
+create divider

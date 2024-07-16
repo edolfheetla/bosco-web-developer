@@ -68,4 +68,10 @@ if click_me:#if/checkvar
 	st.success('checker clicked')#output
 st.link_button('link_button', '#bosco') #link button link_button
 st.link_button('bosco', '#bosco') #link button bosco
-st.write('check out this [link](#bosco)')#url#bosco
+st.write('check out this [link](#bosco)')#url#boscoif selectasd:      #bosco created if/checkvar: select
+Bosco14changes=st.text_area("Bosco 1.4 changes","1> added New option for viewing logs2>Added Refresh Option For View3>Added File Menu For Importing Files 4> Video Format Is now supported")#      bosco created text area: Bosco 1.4 changes
+newselec = st.selectbox('New Selector For Text',['1', '2', '3', '4', '5', '6', '7'])      #bosco created selectornewselec
+st.write('asd\nasd\n')#        bosco created text: asd\nasd\n
+st.success('asd')#        bosco created text-var:asd
+
+st.divider()#      bosco created: divider

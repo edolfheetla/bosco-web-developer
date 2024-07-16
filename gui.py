@@ -1,11 +1,11 @@
 import customtkinter as ctk
 from bosco import *
 from tkinter import simpledialog, messagebox
-
+import re
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-text_var4 = ctk.StringVar(value="Bosco 1.0")
+text_var4 = ctk.StringVar(value="Bosco 1.4")
 label1 = ctk.CTkLabel(root,height=50,width=750,textvariable=text_var4, font=("Felix Titling", 25, "bold"), 
                       fg_color="darkslate gray", text_color="white",corner_radius=30)
 label1.pack(padx=15, pady=5)
@@ -18,7 +18,7 @@ label2.pack(padx=15, pady=5)
 selected_value = ctk.StringVar(value="")
 options = ["", "create link button", "create header", "create divider", "create url", 
            "create text area", "create button", 'create selector', 'create checkbox', 
-           'create output', 'create image', 'create text', 'create title', 'create sub header']
+           'create output', 'create image', 'create video' , 'create text', 'create title', 'create sub header']
 dropdown = ctk.CTkComboBox(root, variable=selected_value, values=options)
 dropdown.pack(padx=10, pady=5)
 
@@ -66,8 +66,8 @@ els.pack(pady=2)
 parform = ctk.CTkButton(root, text="Then \n perform action", command=lambda:[thenperform(),warning()])
 parform.pack(pady=2)
 
-t = ctk.CTkTextbox(root, width=300, height=400)
-savefile = ask_custom_string("Input", "save file")
+t = ctk.CTkTextbox(root, width=450, height=500)
+savefile = ask_custom_string("Input", "save file","file_dialog")
 try:
     with open("share.txt", 'w') as fp:
         fp.writelines(savefile)
@@ -75,8 +75,25 @@ except:
     with open("share.txt", 'w') as fp:
         fp.writelines("save.txt")
         savefile = "save.txt"
-stylefile = ask_custom_string("Input", "style file")
-program = ask_custom_string("Input", "program file")
+stylefile = ask_custom_string("Input", "style file","file_dialog")
+program = ask_custom_string("Input", "program file","file_dialog")
+
+def view_comments():
+    t.delete("1.0", ctk.END)
+    try:
+        with open(savefile, 'r') as fp:
+            lines = fp.readlines()
+            comments = []
+            comments_str = "Comments Are:\n"
+            for i, line in enumerate(lines):
+                if '#' in line:
+                    comment = line.split('#', 1)[1].strip()
+                    comments.append(f"{i}: {comment}")
+            comments_str = "Comments Are:\n" + "\n".join(comments)
+            t.insert("0.0", comments_str)
+            t.pack(side=ctk.TOP, fill=ctk.X)
+    except FileNotFoundError:
+        messagebox.showerror("Error", f"File {savefile} not found")
 
 def view():
     t.delete("1.0", ctk.END)
@@ -107,9 +124,22 @@ def checkbox_callback1():
     else:
         removeview()
 
+def checkbox_callback2():
+    if var2.get() == 1:
+        view_comments()
+    else:
+        removeview()
+
 var1 = ctk.IntVar()
-checkbox1 = ctk.CTkCheckBox(frame, text="View", variable=var1, command=checkbox_callback1)
-checkbox1.grid(sticky="nsew", padx=120,pady=5)
+var2 = ctk.IntVar()
+checkbox1 = ctk.CTkCheckBox(frame, text="View </>", variable=var1, command=checkbox_callback1)
+checkbox1.grid(row = 0, column = 0,sticky="nsew",padx=20,pady=5)
+
+refresh = ctk.CTkButton(frame, text="Refresh ↻", command=checkbox_callback1,height = 10, width = 10)
+refresh.grid(row = 0, column = 0,sticky="e",padx=20,pady=5)
+
+refresh = ctk.CTkCheckBox(frame, text="View #", variable=var2, command=checkbox_callback2,height = 10, width = 10)
+refresh.grid(row = 0, column = 0,padx=20,pady=5)
 
 def compiler():
     Inp = savefile
@@ -137,6 +167,8 @@ def perform_action():
     Input = selected_value.get() + selected_value2.get() + selected_value3.get()
     if Input == "create header":
         CreateGroup()
+    if Input == "create video":
+        CreateVideo()
     if Input == "create navbar":
         Createnav()
     if Input == "create link button":
@@ -216,6 +248,7 @@ def perform_action():
     dropdown2.set("")
     selected_value3==ctk.StringVar(value="")
     dropdown3.set("")
+    success(Input)
 
 button = ctk.CTkButton(frame, text="Perform Selected Action", command=perform_action)
 button.grid(sticky="nsew", padx=50,pady=10)

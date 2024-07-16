@@ -1,8 +1,9 @@
 import customtkinter as ctk
 import ast
+from tkinter import filedialog as fd 
 root = ctk.CTk()
 root.title("Bosco Web Developer")
-root.geometry("400x800")
+root.geometry("450x800")
 root.resizable(False, True)
 
 def get_objects(file_path):
@@ -19,7 +20,7 @@ def get_objects(file_path):
     return list(variable_names)
 
 class CustomInputDialog(ctk.CTkToplevel):
-    def __init__(self, master, title, prompt):
+    def __init__(self, master, title, prompt,file="default"):
         super().__init__(master)
         
         self.title(title)
@@ -31,17 +32,26 @@ class CustomInputDialog(ctk.CTkToplevel):
         
         self.entry = ctk.CTkEntry(self, width=300)
         self.entry.pack(pady=10)
-        
+
         self.button_frame = ctk.CTkFrame(self)
-        self.button_frame.pack(pady=20)
+        self.button_frame.pack(pady=20,padx=10)
         
         self.ok_button = ctk.CTkButton(self.button_frame, text="OK", command=self.on_ok)
-        self.ok_button.pack(side=ctk.LEFT, padx=10)
+        self.ok_button.pack(side=ctk.LEFT, padx=5)
         
         self.cancel_button = ctk.CTkButton(self.button_frame, text="Cancel", command=self.on_cancel)
-        self.cancel_button.pack(side=ctk.LEFT, padx=10)
+        self.cancel_button.pack(side=ctk.LEFT)
+        if file=="file_dialog":
+            self.imp_button = ctk.CTkButton(self.button_frame, text="📁",font=("Arial", 18),command=self.file_menu)
+            self.imp_button.pack(side=ctk.RIGHT, padx=5)
+        else:
+            pass
         
         self.result = None
+    def file_menu(self):
+        self.filetypes = (('text files', '*.txt'),('All files', '*.*'),('CSS files', '*.css'),('python files', '*.py')) 
+        self.f = fd.askopenfilename(filetypes=self.filetypes,initialdir="")
+        self.entry.insert(0,self.f)
         
     def on_ok(self):
         self.result = self.entry.get()
@@ -50,8 +60,8 @@ class CustomInputDialog(ctk.CTkToplevel):
     def on_cancel(self):
         self.destroy()
 
-def ask_custom_string(title, prompt):
-    dialog = CustomInputDialog(root, title, prompt)
+def ask_custom_string(title, prompt,file="default"):
+    dialog = CustomInputDialog(root, title, prompt,file)
     root.wait_window(dialog)
     return dialog.result
 
@@ -75,6 +85,15 @@ def warning():
     label = ctk.CTkLabel(master=new_window, text="✓",font=("Arial",40))
     label.pack(pady=20)
     labe2 = ctk.CTkLabel(master=new_window, text="After this you have to create an object\n that will be displayed if the above conditions meet\n from main menu",font=("Arial",15))
+    labe2.pack(pady=20)
+
+def success(Input):
+    new_window = ctk.CTkToplevel()
+    new_window.title("Information")
+    new_window.geometry("400x200")
+    label = ctk.CTkLabel(master=new_window, text="✓",font=("Arial",40))
+    label.pack(pady=20)
+    labe2 = ctk.CTkLabel(master=new_window, text="Successfully added: "+Input,font=("Arial",15))
     labe2.pack(pady=20)
 
 def insert_warning():
@@ -216,3 +235,4 @@ def ask_remove_string(title, prompt):
     dialog = CustomRemoveDialog(root, title, prompt)
     root.wait_window(dialog)
     return dialog.result
+
