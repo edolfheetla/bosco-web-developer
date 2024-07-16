@@ -15,24 +15,36 @@ savefile = listToString(s)
 try:
         
         #Input = input("Enter Function ")
+        def radio():
+                File_object = open(savefile, "a")
+                variable1 = ask_custom_string("Radial Selector", "Enter variable name")
+                variable = ask_custom_string("Radial Selector", "Enter text to display")
+                insertvalue = ask_custom_string("Radial Selector", "Enter value to insert")
+                insertlist=insertvalue.split(',')
+                insert = ", ".join(f"'{word}'" for word in insertlist)
+                program1 = str(variable1 +" = st.sidebar.radio('"+variable+"',[")
+                program2 = str(insert)
+                program3 = str("])      #bosco created Radial Selector"+variable1+"\n")
+                File_object.write(program1+program2+program3)
+                print("✓")
         def CreateVideo():
                 File_object = open(savefile, "a")
                 url = ask_custom_string("Input", "Enter Video URL")
-                program1 = str("st.video("+url+")#      bosco created URL Video: "+url+"\n")
+                program1 = str("st.sidebar.video("+url+")#      bosco created URL Video: "+url+"\n")
                 File_object.write(program1)
                 print("✓")
         def Createurl():
                 File_object = open(savefile, "a")
                 url = ask_custom_string("Input", "Enter URL")
                 text = ask_custom_string("Input", "Enter text")
-                program1 = str("st.write('"+text+" [link]("+url+")')#      bosco created url: "+text+"\n")
+                program1 = str("st.sidebar.write('"+text+" [link]("+url+")')#      bosco created url: "+text+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def Createnav():
                 File_object = open(savefile, "a")
                 content = ask_custom_string("Input", "navbar contents(use '' and ,)")
-                program1 = str("page = (["+content+"])\nst.write(page)\n")
+                program1 = str("page = (["+content+"])\nst.sidebar.write(page)\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -40,7 +52,7 @@ try:
                 File_object = open(savefile, "a")
                 content1 = ask_custom_string("Input", "Enter URL Use # for in-website titles,headings\nElse use https://website name")
                 content2 = ask_custom_string("Input", "Enter Button Text")
-                program1 = str("st.link_button('"+content2+"', '"+content1+"') #      bosco created link button: "+content2+"\n")
+                program1 = str("st.sidebar.link_button('"+content2+"', '"+content1+"') #      bosco created link button: "+content2+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -49,20 +61,20 @@ try:
                 Var = ask_custom_string("Input", "Enter Text Area Name")
                 heading = ask_custom_string("Input", "Enter Text Area Heading")
                 text = ask_custom_string("Input", "Enter Text")
-                program1 = str(Var+'=st.text_area("'+heading+'","'+text+'")#      bosco created text area: '+heading+'\n')
+                program1 = str(Var+'=st.sidebar.text_area("'+heading+'","'+text+'")#      bosco created text area: '+heading+'\n')
                 File_object.write(program1)
                 print("✓")
 
         def divider():
                 File_object = open(savefile, "a")
-                program1 = str("st.divider()#      bosco created: divider\n")
+                program1 = str("st.sidebar.divider()#      bosco created: divider\n")
                 File_object.write(program1)
                 print("✓")
 
         def code():
                 File_object = open(savefile, "a")
                 inpoot = ask_custom_string("Input", "Enter Code")
-                program1 = str("st.markdown('''\n")
+                program1 = str("st.sidebar.markdown('''\n")
                 program2 = str(inpoot)
                 program3 = str("\n''', unsafe_allow_html=True)")
                 File_object.write("#bosco started writing code\n"+program1+program2+program3+"\n #bosco finished writing code\n")
@@ -87,21 +99,21 @@ try:
         def CreateGroup():
                 variable = ask_custom_string("Input", "Enter Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.header('"+variable+"')#      bosco created header: "+variable+"\n")
+                program1 = str("st.sidebar.header('"+variable+"')#      bosco created header: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def CreateSubGroup():
                 variable = ask_custom_string("Input", "Enter Sub-Header")
                 File_object = open(savefile, "a")
-                program1 = str("st.subheader('"+variable+"')#      bosco created sub header: "+variable+"\n")
+                program1 = str("st.sidebar.subheader('"+variable+"')#      bosco created sub header: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def createtitle():
                 variable = ask_custom_string("Input", "Enter Title")
                 File_object = open(savefile, "a")
-                program1 = str("st.title('"+variable+"')#      bosco created title: "+variable+"\n")
+                program1 = str("st.sidebar.title('"+variable+"')#      bosco created title: "+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -110,12 +122,12 @@ try:
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.write("+i+")#        bosco created text-var: "+i+"\n")
+                        program1 = str("st.sidebar.write("+i+")#        bosco created text-var: "+i+"\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.write('"+variable+"')#        bosco created text: "+variable+"\n")
+                        program1 = str("st.sidebar.write('"+variable+"')#        bosco created text: "+variable+"\n")
                         File_object.write(program1)
                         print("✓")
 
@@ -123,7 +135,7 @@ try:
                 File_object = open(savefile, "a")
                 variable = ask_custom_string("Input", "Enter Path to image","file_dialog")
                 size = ask_custom_string("Input", "Enter size(width)")
-                program1 = str("st.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
+                program1 = str("st.sidebar.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -132,12 +144,12 @@ try:
                 if variable == "variable":
                         i = ask_custom_string("Input", "Enter variable name")
                         File_object = open(savefile, "a")
-                        program1 = str("st.success("+i+")#        bosco created output:"+i+"\n\n")
+                        program1 = str("st.sidebar.success("+i+")#        bosco created output:"+i+"\n\n")
                         File_object.write(program1)
                         print("✓")
                 else:
                         File_object = open(savefile, "a")
-                        program1 = str("st.success('"+variable+"')#        bosco created text-var:"+variable+"\n\n")
+                        program1 = str("st.sidebar.success('"+variable+"')#        bosco created text-var:"+variable+"\n\n")
                         File_object.write(program1)
                         print("✓")
 
@@ -145,14 +157,14 @@ try:
                 File_object = open(savefile, "a")
                 variable = input("image path")
                 size = input("image size")
-                program1 = str("        st.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
+                program1 = str("        st.sidebar.image(Image.open('"+variable+"'),width="+size+")#        bosco created image:"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
         def streamlitcheckbox():
                 File_object = open(savefile, "a")
                 variable = ask_custom_string("Input", "Enter Checkbox name")
-                program1 = str(variable+" = st.checkbox('"+variable+"')#        bosco created checkbox"+variable+"\n")
+                program1 = str(variable+" = st.sidebar.checkbox('"+variable+"')#        bosco created checkbox"+variable+"\n")
                 File_object.write(program1)
                 print("✓")
 
@@ -163,21 +175,9 @@ try:
                 insertvalue = ask_custom_string("Selector Box", "Enter value to insert")
                 insertlist=insertvalue.split(',')
                 insert = ", ".join(f"'{word}'" for word in insertlist)
-                program1 = str(variable1 +" = st.selectbox('"+variable+"',[")
+                program1 = str(variable1 +" = st.sidebar.selectbox('"+variable+"',[")
                 program2 = str(insert)
                 program3 = str("])      #bosco created selector"+variable1+"\n")
-                File_object.write(program1+program2+program3)
-                print("✓")
-        def radio():
-                File_object = open(savefile, "a")
-                variable1 = ask_custom_string("Radial Selector", "Enter variable name")
-                variable = ask_custom_string("Radial Selector", "Enter text to display")
-                insertvalue = ask_custom_string("Radial Selector", "Enter value to insert")
-                insertlist=insertvalue.split(',')
-                insert = ", ".join(f"'{word}'" for word in insertlist)
-                program1 = str(variable1 +" = st.radio('"+variable+"',[")
-                program2 = str(insert)
-                program3 = str("])      #bosco created Radial Selector"+variable1+"\n")
                 File_object.write(program1+program2+program3)
                 print("✓")
 
@@ -188,7 +188,7 @@ try:
                 insertvalue = ask_custom_string("Selector Box", "Enter value to insert")
                 insertlist=insertvalue.split(',')
                 insert = ", ".join(f"'{word}'" for word in insertlist)
-                program1 = str("with st.sidebar:")
+                program1 = str("with st.sidebar.sidebar:")
                 program2 = str()
                 program3 = str("])      #bosco created selector"+variable1+"\n")
                 File_object.write(program1+program2+program3)
@@ -222,7 +222,7 @@ try:
         def button_gui():
                 File_object = open(savefile, "a")
                 name = ask_custom_string("Input", "Enter Button Text")
-                program1 = str(name+" = st.button('"+name+"')      #bosco created button: "+name+"\n")
+                program1 = str(name+" = st.sidebar.button('"+name+"')      #bosco created button: "+name+"\n")
                 File_object.write(program1)
                 print("✓")
 

@@ -1,11 +1,11 @@
 import customtkinter as ctk
-from bosco import *
+from sidebar import *
 from tkinter import simpledialog, messagebox
 import re
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-text_var4 = ctk.StringVar(value="Bosco 2.0")
+text_var4 = ctk.StringVar(value="Bosco SideBar 2.0")
 label1 = ctk.CTkLabel(root,height=50,width=750,textvariable=text_var4, font=("Felix Titling", 25, "bold"), 
                       fg_color="darkslate gray", text_color="white",corner_radius=30)
 label1.pack(padx=15, pady=5)

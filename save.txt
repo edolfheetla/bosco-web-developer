@@ -75,3 +75,6 @@ st.write('asd\nasd\n')#        bosco created text: asd\nasd\n
 st.success('asd')#        bosco created text-var:asd
 
 st.divider()#      bosco created: divider
+st.sidebar.success('SideBar Text')#        bosco created text-var:SideBar Text
+smile = st.radio('smile',['1', '2', '3', '4', '5', '6'])      #bosco created Radial Selectorsmile
+nam = st.sidebar.radio('nnnnaaaaaaaaam',['1', '2', '3'])      #bosco created Radial Selectornam
